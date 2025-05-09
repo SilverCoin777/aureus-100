@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pl">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   AUREUS &ndash; Zakodowana wolno&sacute;&cacute;
+  </title>
+  <style>
+   .header-circle {
+            background-color: #111;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            width: 360px;
+            height: 360px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .header-circle img {
+            max-height: 140px;
+            margin-bottom: 10px;
+        }
+
+        .header-circle h1 {
+            font-size: 28px;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .header-circle p {
+            font-size: 18px;
+            color: #d4af37;
+            margin: 4px 0 0;
+        }
+
+        body {
+            background-color: #0e0e0e;
+            background-image: repeating-linear-gradient(
+                45deg,
+                rgba(212, 175, 55, 0.1) 0,
+                rgba(212, 175, 55, 0.1) 1px,
+                transparent 1px,
+                transparent 40px
+            ),
+            repeating-linear-gradient(
+                -45deg,
+                rgba(212, 175, 55, 0.1) 0,
+                rgba(212, 175, 55, 0.1) 1px,
+                transparent 1px,
+                transparent 40px
+            );
+            background-size: 100% 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #f4f4f4;
+        }
+
+        body::after {
+            content: "Veritas vos liberabit        •        Sapientia est potentia        •        Fiat lux        •        Libertas in codice        •";
+            font-size: 28px;
+            color: rgba(212, 175, 55, 0.1);
+            position: fixed;
+            top: 420px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100vh;
+            white-space: pre-wrap;
+            line-height: 2.8;
+            z-index: 0;
+            padding: 60px;
+            pointer-events: none;
+            text-align: center;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header img {
+            max-height: 160px;
+            width: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 8px #d4af37);
+        }
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        header p {
+            font-size: 20px;
+            color: #d4af37;
+        }
+        .section {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            color: #d4af37;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #d4af37;
+            color: #000;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .button:hover {
+            background-color: #bfa134;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .roadmap {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #f4f4f4;
+        }
+    
+        
+        .navbar {
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+    
+        .navbar a {
+            color: #d4af37;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .navbar a:hover {
+            text-shadow: 0 0 6px #d4af37;
+        }
+
+
+        .aur-nav-counter {
+            color: #d4af37;
+            font-size: 15px;
+            font-weight: bold;
+            margin-left: 18px;
+        }
+
+
+        
+        
+        .aur-nav-dynamic {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            background: radial-gradient(circle at 20% 20%, #ffd700, #ff6600, #cc0000);
+            background-size: 200% 200%;
+            animation: fireWave 4s ease infinite;
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
+        }
+    
+    
+
+        
+
+        @keyframes flicker {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
+
+        @keyframes firePulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    
+        @keyframes fireWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+  </style>
+ </head>
+ <body>
+  <nav class="navbar">
+   <a href="#about">
+    O projekcie
+   </a>
+   <a href="#manifest">
+    Manifest
+   </a>
+   <a href="#whitepaper">
+    Whitepaper
+   </a>
+   <a href="#tokenomics">
+    Tokenomia
+   </a>
+   <a href="#roadmap">
+    Roadmap
+   </a>
+   <a href="#vision">
+    Wizja
+   </a>
+   <a href="#community">
+    Spo&lstrok;eczno&sacute;&cacute;
+   </a>
+   <a href="#faq">
+    FAQ
+   </a>
+   <a href="#contact">
+    Kontakt
+   </a>
+   <div class="aur-nav-dynamic">
+    <div class="aur-nav-text">
+     <span id="aurValue">
+      913&nbsp;790
+     </span>
+     AUR pozosta&lstrok;o w obiegu
+    </div>
+   </div>
+   <script>
+    let aurValue = 913790;
+        const display = document.getElementById("aurValue");
+        function burn() {
+            const burnAmount = Math.floor(Math.random() * 30) + 10;
+            aurValue -= burnAmount;
+            if (aurValue < 900000) aurValue = 913790;
+            display.textContent = aurValue.toLocaleString('pl-PL');
+        }
+        setInterval(burn, 7000);
+   </script>
+  </nav>
+  <div class="content">
+   <header>
+    <div class="header-circle">
+     <img alt="AUREUS Logo" src="https://i.imgur.com/SK3GVhe.png"/>
+     <h1>
+      AUREUS
+     </h1>
+     <p>
+      Zakodowana wolno&sacute;&cacute;
+     </p>
+    </div>
+   </header>
+   <section class="section" id="about">
+    <h2>
+     O projekcie
+    </h2>
+    <p>
+     AUREUS to wi&eogon;cej ni&zdot; kryptowaluta.
+     <br/>
+     To symbol wolno&sacute;ci, kt&oacute;ry &lstrok;&aogon;czy technologi&eogon; blockchain z ide&aogon; przebudzenia &sacute;wiadomo&sacute;ci.
+     <br/>
+     Projekt powsta&lstrok; z my&sacute;l&aogon; o tych, kt&oacute;rzy szukaj&aogon; alternatywy dla centralnych system&oacute;w i pragn&aogon; realnej zmiany.
+     <br/>
+     Kod to nasz j&eogon;zyk. Wolno&sacute;&cacute; to nasz cel.
+    </p>
+   </section>
+   <section class="section" id="manifest">
+    <h2 style="color: #d4af37; text-align: center;">
+     Manifest AUREUSA
+    </h2>
+    <p style="text-align: center; font-style: italic; color: #ffd700;">
+     Veritas in Igne. Lux in Raritate.
+    </p>
+    <br/>
+    <p style="text-align: center;">
+     Nie jeste&sacute;my produktem systemu.
+    </p>
+    <p style="text-align: center;">
+     Nie jeste&sacute;my aktywem do spekulacji.
+    </p>
+    <p style="text-align: center;">
+     Nie jeste&sacute;my g&lstrok;osem rynku.
+    </p>
+    <br/>
+    <p style="text-align: center;">
+     <strong>
+      Jeste&sacute;my odpowiedzi&aogon;.
+     </strong>
+    </p>
+    <p style="text-align: center;">
+     Jeste&sacute;my ogniem, kt&oacute;ry nie niszczy &ndash; lecz ods&lstrok;ania.
+    </p>
+    <p style="text-align: center;">
+     Jeste&sacute;my &sacute;wiadomo&sacute;ci&aogon;, kt&oacute;ra nie potrzebuje zgody.
+    </p>
+    <br/>
+    <p style="text-align: center;">
+     W &sacute;wiecie, gdzie warto&sacute;&cacute; znikn&eogon;&lstrok;a, a pieni&aogon;dz sta&lstrok; si&eogon; echem pustki &ndash;
+    </p>
+    <p style="text-align: center;">
+     <strong>
+      powsta&lstrok; znak.
+     </strong>
+    </p>
+    <p style="text-align: center;">
+     <strong>
+      Z&lstrok;ota spirala AUREUS.
+     </strong>
+    </p>
+    <br/>
+    <p style="text-align: center; font-style: italic; color: #ffd700;">
+     Ignis verus non consumit &mdash; sed revelat.
+    </p>
+    <br/>
+    <p style="text-align: center;">
+     AUREUS to nie trend.
+    </p>
+    <p style="text-align: center;">
+     To iskra, kt&oacute;ra nie p&lstrok;onie dla zysku, lecz dla znaczenia.
+    </p>
+    <p style="text-align: center;">
+     To kod, kt&oacute;rego nie mo&zdot;na zmanipulowa&cacute;.
+    </p>
+    <p style="text-align: center;">
+     To symbol, kt&oacute;rego nie mo&zdot;na kupi&cacute;.
+    </p>
+    <br/>
+    <p style="text-align: center;">
+     W erze mno&zdot;enia &mdash; my odejmujemy.
+    </p>
+    <p style="text-align: center;">
+     W erze dodruku &mdash; my palimy.
+    </p>
+    <p style="text-align: center;">
+     W erze ha&lstrok;asu &mdash; my milczymy z godno&sacute;ci&aogon;.
+    </p>
+    <br/>
+    <p style="text-align: center;">
+     Nie wierzysz? Doskonale.
+    </p>
+    <p style="text-align: center;">
+     <strong>
+      AUREUS nie potrzebuje wiary. Potrzebuje &sacute;wiadomo&sacute;ci.
+     </strong>
+    </p>
+    <br/>
+    <p style="text-align: center; font-style: italic; color: #ffd700;">
+     Aurum verum non timet flammam.
+    </p>
+    <br/>
+    <p style="text-align: center;">
+     <strong>
+      Niech sp&lstrok;onie to, co puste.
+     </strong>
+    </p>
+    <p style="text-align: center;">
+     <strong>
+      Niech zostanie to, co wieczne.
+     </strong>
+    </p>
+    <p style="text-align: center;">
+     <strong>
+      AUREUS.
+     </strong>
+    </p>
+   </section>
+   <section class="section" id="whitepaper">
+    <h2 style="color: #d4af37; text-align: center;">
+     Whitepaper
+    </h2>
+    <p style="text-align: center; max-width: 800px; margin: auto;">
+     Whitepaper AUREUS to kompleksowy dokument zawieraj&aogon;cy za&lstrok;o&zdot;enia projektu, jego unikaln&aogon; tokenomi&eogon;, mechanizmy bezpiecze&nacute;stwa,
+    roadmap, a tak&zdot;e filozoficzny Manifest &ndash; g&lstrok;os naszej idei. To fundament naszej transparentno&sacute;ci i d&lstrok;ugowieczno&sacute;ci.
+    </p>
+    <br/>
+    <ul style="max-width: 600px; margin: auto; color: #ccc;">
+     <li>
+      📌 Poda&zdot;: 1 000 000 AUR, minimum: 10 000 AUR
+     </li>
+     <li>
+      🧱 Brak mintowania, brak admina, czysty kontrakt ERC-20
+     </li>
+     <li>
+      🔥 Mechanizm spalania do adresu black hole
+     </li>
+     <li>
+      🗳️ DAO, spo&lstrok;eczno&sacute;&cacute;, edukacja i przebudzenie
+     </li>
+     <li>
+      📜 Manifest &ndash; duchowa deklaracja projektu
+     </li>
+    </ul>
+    <br/>
+    <div style="text-align: center;">
+     <a download="" href="aureus_whitepaper_final.pdf" style="padding: 12px 24px; background-color: #ffd700; color: #000; font-weight: bold; text-decoration: none; border-radius: 8px;">
+      📥 Pobierz Whitepaper (PDF)
+     </a>
+    </div>
+   </section>
+   <section class="section" id="tokenomics">
+    <h2>
+     Tokenomia
+    </h2>
+    <ul>
+     <li>
+      Pocz&aogon;tkowa poda&zdot;: 1 000 000 AUR
+     </li>
+     <li>
+      Jednostka: 1 AUR = 1 000 000 000 auri
+     </li>
+     <li>
+      Maksymalnie 990 000 AUR mo&zdot;e zosta&cacute; spalonych
+     </li>
+     <li>
+      Minimalna mo&zdot;liwa poda&zdot;: 10 000 AUR
+     </li>
+     <li>
+      Brak podatk&oacute;w transakcyjnych
+     </li>
+     <li>
+      Brak mintowania nowych token&oacute;w
+     </li>
+    </ul>
+   </section>
+   <section class="section" id="roadmap">
+    <h2>
+     Roadmap
+    </h2>
+    <ul class="roadmap">
+     <li>
+      Etap 1: Koncepcja, branding, manifest, tokenomia ✅
+     </li>
+     <li>
+      Etap 2: Uruchomienie kontraktu, strona WWW, manifest ✅
+     </li>
+     <li>
+      Etap 3: Whitepaper, publikacja i rejestracja (CoinMarketCap / CoinGecko)
+     </li>
+     <li>
+      Etap 4: Wdro&zdot;enie u&zdot;ytkowe (NFT, crowdfund, interakcje)
+     </li>
+     <li>
+      Etap 5: Budowa spo&lstrok;eczno&sacute;ci i ambasador&oacute;w
+     </li>
+    </ul>
+   </section>
+   <section class="section" id="vision">
+    <h2>
+     Wizja i warto&sacute;ci
+    </h2>
+    <p>
+     AUREUS to nie tylko token. To impuls przebudzenia.
+     <br/>
+     Nasz&aogon; warto&sacute;ci&aogon; jest wolno&sacute;&cacute;, nasz&aogon; si&lstrok;&aogon; &ndash; technologia, naszym celem &ndash; transformacja.
+    </p>
+   </section>
+   <section class="section" id="community">
+    <h2>
+     Spo&lstrok;eczno&sacute;&cacute;
+    </h2>
+    <p>
+     Do&lstrok;&aogon;cz do spo&lstrok;eczno&sacute;ci AUREUS.
+     <br/>
+     Razem tworzymy now&aogon; jako&sacute;&cacute; wolno&sacute;ci.
+     <br/>
+     Ambasadorzy, arty&sacute;ci, koderzy &ndash; jeste&sacute;cie w&sacute;r&oacute;d nas.
+    </p>
+   </section>
+   <section class="section" id="faq">
+    <h2>
+     FAQ
+    </h2>
+    <ul>
+     <li>
+      <strong>
+       Czym jest AUREUS?
+      </strong>
+      <br/>
+      Deflacyjny token oparty na Ethereum, symbolem wolno&sacute;ci i przebudzenia.
+     </li>
+     <li>
+      <strong>
+       Jak dzia&lstrok;a spalanie?
+      </strong>
+      <br/>
+      Cz&eogon;&sacute;&cacute; token&oacute;w mo&zdot;e by&cacute; trwale usuwana z obiegu, zmniejszaj&aogon;c poda&zdot;.
+     </li>
+     <li>
+      <strong>
+       Jak do&lstrok;&aogon;czy&cacute; do projektu?
+      </strong>
+      <br/>
+      &Sacute;led&zacute; nasze aktualizacje i b&aogon;d&zacute; cz&eogon;&sacute;ci&aogon; spo&lstrok;eczno&sacute;ci!
+     </li>
+    </ul>
+   </section>
+   <section class="section" id="contact">
+    <h2>
+     Kontakt
+    </h2>
+    <p>
+     Masz pytania, sugestie lub chcesz wsp&oacute;&lstrok;tworzy&cacute; AUREUS?
+     <br/>
+     Skontaktuj si&eogon; z nami:
+     <a href="mailto:kontakt@aureus.io">
+      kontakt@aureus.io
+     </a>
+     (adres tymczasowy)
+    </p>
+   </section>
+  </div>
+ </body>
+</html>
